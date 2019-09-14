@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>Assignment 1</h1>
+        <input id="number" type="text" multiple onblur="findNumbers()">
+        <br/>
+        <div style="margin-top: 20px;">Matched value: <p id="result"></p></div>
+    </body>
+    <script>
+    function findNumbers() {
+        let num = document.getElementById("number").value;
+        let regex =  /^[A-Za-z]+$/;
+        let array = [12,2000,2001,3000,4000];
+        let result;
+            if (num.match(regex)){
+                result = "Please enter numeric value";
+        } else {
+                
+                numlist = num.split(",");
+
+                result = intersect_arrays(array, numlist);
+
+        }
+            document.getElementById("result").innerHTML = result;
+    }
+    
+    function intersect_arrays(arr1, arr2) {
+  var sorted_arr1 = arr1.concat().sort();
+  var sorted_arr2 = arr2.concat().sort();
+  var common = [];
+  var arr1_i = 0;
+  var arr2_i = 0;
+
+  while (arr1_i < arr1.length && arr2_i < arr2.length) {
+    if (sorted_arr1[arr1_i] == sorted_arr2[arr2_i]) {
+      common.push(sorted_arr1[arr1_i]);
+      arr1_i++;
+      arr2_i++;
+    } else if (sorted_arr1[arr1_i] < sorted_arr2[arr2_i]) {
+        arr1_i++;
+    } else {
+        arr2_i++;
+    }
+  }
+  return common;
+}
+
+
+    </script>
+</html>
